@@ -1,0 +1,26 @@
+body {
+    background: black;
+}
+.square {
+    width: 30%;
+    background: purple;
+    margin: 1.66%;
+    padding-bottom: 30%;
+    float: left;
+}
+.container{
+    width: 600px;
+    margin: 0 auto;
+}
+h1{
+    color: white;
+    text-align: center
+}
+.messageDisplay {
+    color: white;
+    text-align: center;
+}
+#stripe{
+    text-align: center;
+    color: black;
+}
