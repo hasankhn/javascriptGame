@@ -1,21 +1,59 @@
 //game
-var colors = getRandomColor(6);
-console.log(colors);
+var numSquares = 6;
+var colors = getRandomColor(numSquares);
 var square = document.querySelectorAll('.square');
 var pickedColor = colors[randColor()];
 var displayMessage = document.querySelector('.messageDisplay');
 var reset = document.querySelector('.reset');
 var colorDisplay = document.getElementById('colorDisplay');
 var h1 = document.querySelector('h1');
+var easyBtn = document.getElementById("easyBtn");
+var hardBtn = document.getElementById("hardBtn");
 
-reset.addEventListener("click",function(){
-    colors = getRandomColor(6);
-    pickedColor = colors[randColor()];    
-    for (var i = 0; i < colors.length; i++) {        
+easyBtn.addEventListener("click",function(){
+    easyBtn.classList.add("selected");
+    displayMessage.textContent = "";
+    hardBtn.classList.remove("selected");
+    numSquares = 3;
+    colors = getRandomColor(numSquares);
+    pickedColor = colors[randColor()];
+    colorDisplay.textContent = pickedColor; //added color rgb to span    
+    for (var i = 0; i < square.length; i++) {
+        if(colors[i]){
+            square[i].style.background = colors[i];
+        }else{
+            square[i].style.display = "none";
+        }
+    }
+    h1.style.background = "steelblue";
+});
+
+hardBtn.addEventListener("click",function(){
+    easyBtn.classList.remove("selected");
+    displayMessage.textContent = "";
+    hardBtn.classList.add("selected");
+    numSquares = 6;
+    colors = getRandomColor(numSquares);
+    pickedColor = colors[randColor()];
+    colorDisplay.textContent = pickedColor; //added color rgb to span    
+    for (var i = 0; i < square.length; i++) {
+            square[i].style.background = colors[i];
+            square[i].style.display = "block";
+    }
+    h1.style.background = "steelblue";
+});
+
+reset.addEventListener("click", function () {
+    colors = getRandomColor(numSquares);
+    this.textContent = "New Colors";    
+    pickedColor = colors[randColor()];
+    displayMessage.textContent = "";
+    for (var i = 0; i < colors.length; i++) {
         colorDisplay.textContent = pickedColor; //added color rgb to span
         square[i].style.background = colors[i]; //assign colors to boxes
-    };        
-})
+    };
+    h1.style.background = "steelblue";
+});
 
 for (var i = 0; i < colors.length; i++) {
     colorDisplay.textContent = pickedColor; //added color rgb to span
@@ -29,7 +67,7 @@ for (var i = 0; i < colors.length; i++) {
             reset.textContent = "Play Again?";
             succeed();
         } else {
-            this.style.background = '#000';
+            this.style.background = '#232323';
             displayMessage.textContent = "Try Again";
         }
     })
